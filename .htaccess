@@ -1,0 +1,15 @@
+<?php
+/**
+ * .htaccess for URL Rewriting
+ */
+
+RewriteEngine On
+RewriteBase /
+
+# Prevent direct access to certain directories
+RewriteRule ^(config|database|helpers|models|middleware|layouts)/ - [F,L]
+
+# Redirect to login if not authenticated
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(medicines|stock|sales|reports|settings|users|customers|purchases)/(.*)$ $0 [QSA,L]
